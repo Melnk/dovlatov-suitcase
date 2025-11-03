@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Вход</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
     <h2>Вход в аккаунт</h2>
