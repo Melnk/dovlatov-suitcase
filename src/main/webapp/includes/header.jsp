@@ -1,16 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: melni
-  Date: 03.11.2025
-  Time: 17:16
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Сергей Довлатов</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 
-</body>
-</html>
+<nav>
+    <a href="index.jsp">Главная</a>
+</nav>
+<hr>

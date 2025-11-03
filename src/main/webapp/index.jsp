@@ -1,9 +1,18 @@
+<%--Главная страница--%>
+<%--Директивы
+Инструкция для JSP-контейнера, как обрабатывать страницу--%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include file="includes/header.jsp"%>
+
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Главная</title>
+<body>
     <link rel="stylesheet" href="static/css/style.css">
-</head>
-<h2>Hello World!</h2>
 </body>
 </html>
+
+<div class="content">
+    <h1>Сайт о Сергее Довлатове</h1>
+    <p>Писатель, наблюдатель, гений, ироничный литописец советской жизни и просто красавчик</p>
+</div>
+
+<%@ include file="includes/footer.jsp" %>
