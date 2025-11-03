@@ -9,7 +9,6 @@ import ru.dovlatov.suitcase.dao.UserDao;
 import ru.dovlatov.suitcase.model.User;
 import ru.dovlatov.suitcase.util.PasswordUtils;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.Optional;
 
 @WebServlet("/login")

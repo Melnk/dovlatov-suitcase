@@ -12,7 +12,6 @@ body {
     color: #333;
     background-color: #f4f4f4;
     min-height: 100vh;
-    text-align: center; /* всё центрируется по умолчанию */
 }
 
 /* Светлая и тёмная тема */
@@ -21,7 +20,7 @@ body.dark {
     color: #f0f0f0;
 }
 
-body.dark header {
+body.dark nav {
     background: linear-gradient(to right, #000, #222);
 }
 
@@ -32,147 +31,73 @@ body.dark header {
     padding: 20px;
 }
 
+/* === НАВИГАЦИЯ === */
+nav {
+    background: linear-gradient(to right, #333, #555);
+    padding: 1rem 0;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+nav a:hover {
+    background-color: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+}
+
+/* Разделительная линия после навигации */
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ccc, transparent);
+    margin: 0 auto 30px auto;
+    max-width: 1200px;
+}
+
+body.dark hr {
+    background: linear-gradient(to right, transparent, #555, transparent);
+}
+
 /* === ШАПКА === */
 header {
-    background: linear-gradient(to right, #333, #555);
-    color: #fff;
-    padding: 2rem 0;
+    text-align: center;
+    padding: 3rem 0;
     margin-bottom: 30px;
-    border-radius: 8px;
 }
 
 header h1 {
     font-size: 2.5em;
-    margin-bottom: 5px; /* Надо */
+    margin-bottom: 10px;
+    color: #333;
 }
 
-main h2 {
-    font-size: 1.5em;
-    margin: 0;
-    padding: 0;
-    line-height: 30px;
-    height: 35px;
+body.dark header h1 {
+    color: #f0f0f0;
 }
 
 header p {
     font-size: 1.2em;
-    margin-bottom: 0;
+    color: #666;
 }
 
-/* === КНОПКИ СВЕРХУ === */
-.top-controls {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    gap: 10px;
-    z-index: 100;
-}
-
-.menu-toggle,
-.theme-toggle,
-#trunk-button {
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #194152, #194152);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: .5px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-}
-
-.menu-toggle:hover,
-.theme-toggle:hover,
-#trunk-button:hover {
-    background: linear-gradient(135deg, #27ae60, #1e8449);
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
-}
-
-#trunk-button {
-    display: inline-block;
-    margin-top: 20px;
-}
-
-/* === САЙДБАР === */
-.nav-sidebar {
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 280px;
-    height: 100vh;
-    background: #333;
-    transition: left 0.3s ease-in-out;
-    z-index: 1000;
-    padding: 60px 20px 20px;
-}
-
-.nav-sidebar.active {
-    left: 0;
-}
-
-.nav-sidebar ul {
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.nav-sidebar a {
-    display: block;
-    color: white;
-    padding: 12px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.nav-sidebar a:hover {
-    background-color: #111;
-}
-
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* === OVERLAY === */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-    z-index: 999;
-}
-
-.overlay.active {
-    opacity: 1;
-    visibility: visible;
+body.dark header p {
+    color: #ccc;
 }
 
 /* === ОСНОВНОЙ КОНТЕНТ === */
 main {
     padding: 20px 0;
+    text-align: center;
 }
 
 main h1,
@@ -180,17 +105,16 @@ main h2,
 main h3,
 main p,
 main img {
-    text-align: center;
-    margin-bottom: 15px; /* ↑ расстояние между блоками */
+    margin-bottom: 15px;
 }
 
-/* Списки — цифры слева, но сам блок по центру */
+/* Списки */
 main ol {
-    display: inline-block;       /* чтобы центрировался весь список */
-    text-align: left;            /* а внутри текст слева */
+    display: inline-block;
+    text-align: left;
     list-style-position: outside;
     padding-left: 40px;
-    margin: 20px auto;            /* отступы сверху/снизу */
+    margin: 20px auto;
 }
 
 main ol li {
@@ -219,6 +143,7 @@ img {
     font-size: 1.1em;
 }
 
+/* Кнопки */
 .telegram-link {
     display: inline-block;
     background-color: #2ecc71;
@@ -243,7 +168,6 @@ img {
     margin: 30px 0;
 }
 
-/* Картинки с плавным увеличением */
 .gallery-container img,
 #trunk-image {
     width: 100%;
@@ -265,34 +189,66 @@ img {
     .container {
         padding: 15px;
     }
+
+    nav {
+        padding: 0.8rem 0;
+    }
+
+    nav a {
+        padding: 10px 15px;
+        margin: 0 2px;
+        font-size: 0.9em;
+    }
+
     header h1 {
         font-size: 2em;
     }
+
     header p {
         font-size: 1.1em;
     }
 }
 
-@media (max-width: 480px) {
-    .top-controls {
-        top: 10px;
-        left: 10px;
-        gap: 6px;
+@media (max-width: 600px) {
+    nav {
+        text-align: center;
     }
-    .menu-toggle,
-    .theme-toggle {
-        font-size: 14px;
-        padding: 8px 12px;
+
+    nav a {
+        display: block;
+        margin: 5px 0;
+        padding: 10px;
     }
+
+    header {
+        padding: 2rem 0;
+    }
+
     header h1 {
         font-size: 1.8em;
     }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    nav a {
+        font-size: 0.85em;
+        padding: 8px 12px;
+    }
+
+    header h1 {
+        font-size: 1.6em;
+    }
+
     header p {
         font-size: 1em;
     }
 }
 
-/* === ДЛЯ ФОРМЫ === */
+/* === ДЛЯ ФОРМ === */
 form {
     max-width: 420px;
     margin: 60px auto;
@@ -300,7 +256,7 @@ form {
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    text-align: left; /* чтобы label и поля выровнялись красиво */
+    text-align: left;
 }
 
 body.dark form {
@@ -314,7 +270,6 @@ form label {
     font-weight: bold;
     font-size: 0.95rem;
     color: #444;
-    transition: color .3s;
 }
 
 body.dark form label {
@@ -335,7 +290,7 @@ form input[type="email"] {
 
 body.dark form input[type="text"],
 body.dark form input[type="email"],
-body.dark form input[type="password"]{
+body.dark form input[type="password"] {
     background-color: #2a2a2a;
     border-color: #555;
     color: #f0f0f0;
@@ -363,10 +318,10 @@ form button[type="submit"] {
 
 form button[type="submit"]:hover {
     background: linear-gradient(135deg, #2ecc71, #27ae60);
-    transform: translateY(-2px) scale(1.03);
+    transform: translateY(-2px);
 }
 
-/* Адаптивность */
+/* Адаптивность для форм */
 @media (max-width: 480px) {
     form {
         margin: 30px 15px;
