@@ -10,6 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Регистрация</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Регистрация</h2>
