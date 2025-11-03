@@ -30,7 +30,7 @@ public class ProductDao {
                 ));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Ошибка загрузки списка продуктов", e);
         }
         return products;
     }
