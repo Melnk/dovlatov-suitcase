@@ -1,12 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Сергей Довлатов</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-</head>
-<body>
+<%-- Без директивы contentType --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <nav>
     <a href="index.jsp">Главная</a>
@@ -15,8 +8,5 @@
     <a href="products.jsp">Товары</a>
     <a href="cart.jsp">Корзина</a>
     <a href="logout">Выйти</a>
-
-
-
 </nav>
 <hr>

@@ -12,6 +12,21 @@
     <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
+<div class="top-controls">
+    <button id="menuToggle" class="menu-toggle">☰ Меню</button>
+</div>
 
+<nav id="mainNav" class="nav-sidebar">
+    <ul>
+        <li><a href="index.jsp">Главная</a></li>
+        <li><a href="biography.jsp">Биография</a></li>
+        <li><a href="gallery.jsp">Галерея</a></li>
+        <li><a href="products">Товары</a></li>
+        <li><a href="cart.jsp">Корзина</a></li>
+        <li><a href="logout">Выйти</a></li>
+    </ul>
+    <button class="close-btn">×</button>
+</nav>
+<script src="script.js"></script>
 </body>
 </html>
