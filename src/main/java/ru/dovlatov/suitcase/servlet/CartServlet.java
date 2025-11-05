@@ -32,9 +32,11 @@ public class CartServlet extends HttpServlet {
         if (productIdStr != null) {
             int productId = Integer.parseInt(productIdStr);
             cart.addItem(productId);
+
+            session.setAttribute("successMessage", "Товар добавлен в корзину!");
         }
 
-        resp.sendRedirect("cart.jsp");
+        resp.sendRedirect("products");
     }
 
     @Override
@@ -43,13 +45,17 @@ public class CartServlet extends HttpServlet {
         Cart cart = (session != null) ? (Cart) session.getAttribute("cart") : null;
 
         if (cart == null || cart.isEmpty()) {
-            req.setAttribute("cart", Collections.emptyList());
+            req.setAttribute("products", Collections.emptyList());
+            req.setAttribute("quantities", Collections.emptyMap());
         } else {
             Map<Integer, Integer> items = cart.getItems();
             List<Product> products = new ArrayList<>();
-            for (Integer id : items.keySet()) {
-                productDao.findById(id).ifPresent(products::add);
+
+            // ИСПРАВЛЕНО: используем entrySet чтобы избежать дублирования
+            for (Map.Entry<Integer, Integer> entry : items.entrySet()) {
+                productDao.findById(entry.getKey()).ifPresent(products::add);
             }
+
             req.setAttribute("products", products);
             req.setAttribute("quantities", items);
         }

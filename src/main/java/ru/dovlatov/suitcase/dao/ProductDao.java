@@ -26,6 +26,7 @@ public class ProductDao {
         try (Connection conn = ConnectionManager.getConnection();
         PreparedStatement ps = conn.prepareStatement(FIND_ALL);
         ResultSet rs = ps.executeQuery()) {
+
             while (rs.next()) {
                 products.add(new Product(
                     rs.getInt("id"),
@@ -43,8 +44,11 @@ public class ProductDao {
 
     public Optional<Product> findById(int id) {
         try (Connection conn = ConnectionManager.getConnection();
-             PreparedStatement ps = conn.prepareStatement(FIND_ALL);
-             ResultSet rs = ps.executeQuery()) {
+             PreparedStatement ps = conn.prepareStatement(FIND_BY_ID)) {
+
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return Optional.of(new Product(
                     rs.getInt("id"),
