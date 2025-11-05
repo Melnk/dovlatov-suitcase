@@ -1,4 +1,6 @@
-<%--
+<%@ page import="ru.dovlatov.suitcase.model.Product" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: melni
   Date: 03.11.2025
@@ -22,11 +24,45 @@
         <li><a href="biography.jsp">Биография</a></li>
         <li><a href="gallery.jsp">Галерея</a></li>
         <li><a href="products">Товары</a></li>
-        <li><a href="cart.jsp">Корзина</a></li>
+        <li><a href="cart">Корзина</a></li>
         <li><a href="logout">Выйти</a></li>
     </ul>
     <button class="close-btn">×</button>
 </nav>
+
+<div class="container">
+    <h2>Корзина</h2>
+    <%
+        List<Product> products = (List<Product>) request.getAttribute("products");
+        Map<Integer, Integer> quantities = (Map<Integer, Integer>) request.getAttribute("quantities");
+        if (products == null || products.isEmpty()) {
+    %>
+    <p>Ваша корзина пуста.</p>
+    <%
+    } else {
+        double total = 0.0;
+        for (Product p : products) {
+            int q = quantities.getOrDefault(p.getId(), 1);
+            total += p.getPrice().doubleValue() * q;
+    %>
+    <div class="cart-item">
+        <span><%= p.getName() %></span>
+        <span>Количество: <%= q %></span>
+        <span>Цена: <%= p.getPrice() %> $</span>
+    </div>
+    <%
+        }
+    %>
+    <hr>
+    <h3>Итого: <%= String.format("%.2f", total) %> $</h3>
+    <form action="order" method="post">
+        <button type="submit">Оформить заказ</button>
+    </form>
+    <%
+        }
+    %>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>

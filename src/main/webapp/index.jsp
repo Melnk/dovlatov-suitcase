@@ -15,11 +15,11 @@
 
 <nav id="mainNav" class="nav-sidebar">
     <ul>
-        <li><a href="index.html">Главная</a></li>
+        <li><a href="index.jsp">Главная</a></li>
         <li><a href="biography.jsp">Биография</a></li>
         <li><a href="gallery.jsp">Галерея</a></li>
         <li><a href="products">Товары</a></li>
-        <li><a href="cart.jsp">Корзина</a></li>
+        <li><a href="cart">Корзина</a></li>
         <li><a href="logout">Выйти</a></li>
     </ul>
     <button class="close-btn">×</button>

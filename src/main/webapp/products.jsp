@@ -14,13 +14,23 @@
     <button id="menuToggle" class="menu-toggle">☰ Меню</button>
 </div>
 
+<%
+    String successMessage = (String) session.getAttribute("successMessage");
+    if (successMessage != null) {
+        session.removeAttribute("successMessage");
+%>
+<div class="success-message">
+    <%= successMessage %>
+    <a href="cart" class="view-cart-link">Перейти в корзину</a>
+</div>
+<% } %>
 <nav id="mainNav" class="nav-sidebar">
     <ul>
         <li><a href="index.jsp">Главная</a></li>
         <li><a href="biography.jsp">Биография</a></li>
         <li><a href="gallery.jsp">Галерея</a></li>
         <li><a href="products.jsp">Товары</a></li>
-        <li><a href="cart.jsp">Корзина</a></li>
+        <li><a href="cart">Корзина</a></li>
         <li><a href="logout">Выйти</a></li>
     </ul>
     <button class="close-btn">×</button>
