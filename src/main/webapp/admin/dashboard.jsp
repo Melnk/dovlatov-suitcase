@@ -1,4 +1,5 @@
-<%--
+<%@ page import="ru.dovlatov.suitcase.model.Product" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: melni
   Date: 06.11.2025
@@ -10,21 +11,9 @@
   <head>
     <meta charset="UTF-8">
     <title>Админ-панель</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/admin.css">
   </head>
   <body>
-
-  <nav id="mainNav" class="nav-sidebar">
-    <ul>
-      <li><a href="index.jsp">Главная</a></li>
-      <li><a href="biography.jsp">Биография</a></li>
-      <li><a href="gallery.jsp">Галерея</a></li>
-      <li><a href="products">Товары</a></li>
-      <li><a href="cart">Корзина</a></li>
-      <li><a href="logout">Выйти</a></li>
-    </ul>
-    <button class="close-btn">×</button>
-  </nav>
 
   <div class="container">
     <h1>Админ-панель</h1>
@@ -39,7 +28,48 @@
 
   <h2>Добавить товар</h2>
   <form method="post" action="dashboard">
-    
+    <input type="text" name="name" placeholder="Название" required><br>
+    <textarea name="description" placeHolder="Описание" required></textarea><br>
+    <input type="number" step="0.01" name="price" placeholder="Цена" required><br>
+    <input type="text" name="imageUrl" placeholder="URL изображение" required><br>
+    <button type="submit">Добавить</button>
+  </form>
+
+  <hr>
+
+  <h2>Список товаров</h2>
+
+  <%
+    List<Product> products = (List<Product>) request.getAttribute("products");
+    if (products == null || products.isEmpty()) {
+  %>
+  <p>Нет товара.</p>
+  <% } else { %>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <tr><th>ID</th><th>Название</th><th>Цена</th><th>Описание</th><th>Картинка</th></tr>
+    <%
+      for (Product p : products) {
+    %>
+    <tr>
+      <td><%= p.getId()%></td>
+      <td><%= p.getName()%></td>
+      <td><%= p.getPrice()%></td>
+      <td><%= p.getDescription()%></td>
+      <td>
+        <% if (p.getImageUrl() != null && !p.getImageUrl().isEmpty()) { %>
+        <img src="${pageContext.request.contextPath}/<%= p.getImageUrl() %>" width="80" height="80" alt="<%= p.getName() %>">
+        <% } %>
+        <p><%=p.getImageUrl()%></p>
+      </td>
+    </tr>
+    <%
+      }
+    %>
+  </table>
+  <%
+    }
+  %>
+
   </form>
 
 
