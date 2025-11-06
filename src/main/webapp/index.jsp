@@ -1,7 +1,6 @@
 <%--Главная страница--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Сергей Довлатов</title>
