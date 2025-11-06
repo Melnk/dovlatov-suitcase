@@ -28,6 +28,32 @@
     </ul>
     <button class="close-btn">×</button>
 </nav>
+
+<div class="container">
+    <header>
+        <h1>Галерея наслаждения</h1>
+    </header>
+
+    <main>
+        <div class="gallery-container">
+            <img src="static/images/галерея1.jpg" alt="Довлатов">
+            <img src="static/images/галерея2.jpg" alt="Довлатов">
+            <img src="static/images/галерея3.jpg" alt="Довлатов">
+            <img src="static/images/галерея4.jpg" alt="Довлатов">
+            <img src="static/images/галерея5.jpg" alt="Довлатов">
+            <img src="static/images/галерея6.jpg" alt="Довлатов">
+            <img src="static/images/галерея7.jpg" alt="Довлатов">
+            <img src="static/images/галерея8.jpg" alt="Довлатов">
+            <img src="static/images/галерея9.jpg" alt="Довлатов">
+            <img src="static/images/галерея10.jpg" alt="Довлатов">
+            <img src="static/images/галерея11.jpg" alt="Довлатов">
+            <img src="static/images/галерея12.jpg" alt="Довлатов">
+            <img src="static/images/галерея13.jpg" alt="Довлатов">
+            <img src="static/images/галерея14.jpg" alt="Довлатов">
+        </div>
+    </main>
+</div>
+
 <script src="static/js/script.js"></script>
 </body>
 </html>
