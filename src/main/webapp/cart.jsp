@@ -58,10 +58,10 @@
     <form action="order" method="post">
         <button type="submit">Оформить заказ</button>
     </form>
-    <a href="orders" class="link-orders">Перейти к моим заказам</a>
     <%
         }
     %>
+    <a href="orders" class="link-orders">Перейти к моим заказам</a>
 </div>
 
 
