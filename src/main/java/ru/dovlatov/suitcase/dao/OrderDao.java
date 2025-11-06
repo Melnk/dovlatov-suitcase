@@ -14,7 +14,7 @@ public class OrderDao {
 
     public void saveOrder(int userId, Map<Integer, Integer> items) {
         String insertOrder = "INSERT INTO orders (user_id) VALUES (?) RETURNING id";
-        String insertItem = "INSERT INTO items (oreder_id, product_id, quantity) VALUES (?, ?, ?)";
+        String insertItem = "INSERT INTO order_items (order_id, product_id, quantity) VALUES (?, ?, ?)"; // ИСПРАВЛЕНО
 
         try (Connection conn = ConnectionManager.getConnection()) {
             conn.setAutoCommit(false);
@@ -29,35 +29,37 @@ public class OrderDao {
 
             try (PreparedStatement ps = conn.prepareStatement(insertItem)) {
                 for (Map.Entry<Integer, Integer> entry : items.entrySet()) {
-                    ps.setInt(1, userId);
+                    ps.setInt(1, orderId);  // ИСПРАВЛЕНО: используем orderId, а не userId
                     ps.setInt(2, entry.getKey());
                     ps.setInt(3, entry.getValue());
                     ps.addBatch();
                 }
+                ps.executeBatch();  // ДОБАВЛЕНО: выполняем batch
                 conn.commit();
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Ошибка сохранения заказа", e);
         }
     }
 
     public List<OrderView> findOrdersByUserId(int userId) {
         String sql = """
-            SELECT o.id AS order_id,
-                o.created_at,
-                p.name AS product_name,
-                oi.quantity,
-                p.price
-            FROM orders o
-            JOIN orders_items oi ON o.id = oi.order_id
-            JOIN products p ON p.id = oi.product_id
-            WHERE o.user_id = ?
-            ORDER BY o.created_at DESC;
-            """;
+        SELECT o.id AS order_id,
+            o.created_at,
+            p.name AS product_name,
+            oi.quantity,
+            p.price
+        FROM orders o
+        JOIN order_items oi ON o.id = oi.order_id
+        JOIN products p ON p.id = oi.product_id
+        WHERE o.user_id = ?
+        ORDER BY o.created_at DESC
+        """;  // УБРАТЬ точку с запятой здесь
+
         List<OrderView> result = new ArrayList<>();
 
         try (Connection conn = ConnectionManager.getConnection();
-        PreparedStatement ps = conn.prepareStatement(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
 
@@ -71,7 +73,7 @@ public class OrderDao {
                 result.add(item);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Ошибка загрузки заказов пользователя: " + userId, e);
         }
         return result;
     }

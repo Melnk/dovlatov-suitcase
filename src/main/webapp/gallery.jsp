@@ -28,6 +28,6 @@
     </ul>
     <button class="close-btn">×</button>
 </nav>
-<script src="script.js"></script>
+<script src="static/js/script.js"></script>
 </body>
 </html>

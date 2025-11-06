@@ -5,24 +5,32 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter("/*")  // Важно: "/*" для всех URL
+@WebFilter("/*")
 public class EncodingFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
 
-        System.out.println("=== EncodingFilter activated ==="); // Добавьте это для отладки
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        String path = httpRequest.getRequestURI();
+
+        if (path.startsWith("/static/") ||
+            path.endsWith(".css") ||
+            path.endsWith(".js") ||
+            path.endsWith(".png") ||
+            path.endsWith(".jpg") ||
+            path.equals("/script.js")) {
+
+            chain.doFilter(request, response);
+            return;
+        }
+
+        System.out.println("=== EncodingFilter processing: " + path);
 
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
-
-        // Для отладки
-        if (request instanceof HttpServletRequest) {
-            HttpServletRequest httpRequest = (HttpServletRequest) request;
-            System.out.println("Filter processing: " + httpRequest.getRequestURL());
-        }
 
         chain.doFilter(request, response);
     }
