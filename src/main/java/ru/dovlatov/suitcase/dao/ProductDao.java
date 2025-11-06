@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -62,5 +63,30 @@ public class ProductDao {
             throw new RuntimeException("Ошибка при поиске продукта", e);
         }
         return Optional.empty();
+    }
+
+    public int countProducts() {
+        try (Connection conn = ConnectionManager.getConnection();
+             Statement ps = conn.createStatement();
+             ResultSet rs = ps.executeQuery("SELECT COUNT(*) FROM products;")) {
+            if (rs.next()) {return rs.getInt(1);}
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
+    public void save(Product product) {
+        String sql = "INSERT INTO products (name, description, price, image_url) VALUES (?,?,?,?,?);";
+        try (Connection conn = ConnectionManager.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, product.getName());
+            ps.setString(2, product.getDescription());
+            ps.setBigDecimal(3, product.getPrice());
+            ps.setString(4, product.getImageUrl());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
