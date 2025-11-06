@@ -54,6 +54,6 @@
     </main>
 </div>
 
-<script src="static/js/script.js"></script>
+<script src="static/js/gallery.js"></script>
 </body>
 </html>
