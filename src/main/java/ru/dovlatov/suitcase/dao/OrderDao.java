@@ -63,10 +63,16 @@ public class OrderDao {
 
             while (rs.next()) {
                 OrderView item = new OrderView();
-                item.setOrderId()
+                item.setOrderId(rs.getInt("order_id"));
+                item.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+                item.setProductName(rs.getString("product_name"));
+                item.setQuantity(rs.getInt("quantity"));
+                item.setPrice(rs.getBigDecimal("price"));
+                result.add(item);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return result;
     }
 }

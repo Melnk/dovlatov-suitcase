@@ -31,6 +31,9 @@ public class OrderServlet extends HttpServlet {
             return;
         }
 
-        // TODO
+        orderDao.saveOrder(user.getId(), cart.getItems());
+        cart.clear();
+
+        resp.sendRedirect("orders.jsp");
     }
 }
