@@ -20,6 +20,13 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
+    public Product(String name, String description, BigDecimal price, String imageUrl) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.imageUrl = imageUrl;
+    }
+
     public int getId() {
         return id;
     }

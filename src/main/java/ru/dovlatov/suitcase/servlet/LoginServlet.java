@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
         session.setAttribute("user", user);
 
         if ("admin".equals(user.getRole())) {
-            resp.sendRedirect("admin/dashboard.jsp");
+            resp.sendRedirect("admin/dashboard");
         } else {
             resp.sendRedirect("index.jsp");
         }

@@ -77,7 +77,7 @@ public class ProductDao {
     }
 
     public void save(Product product) {
-        String sql = "INSERT INTO products (name, description, price, image_url) VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO products (name, description, price, image_url) VALUES (?,?,?,?);";
         try (Connection conn = ConnectionManager.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, product.getName());
