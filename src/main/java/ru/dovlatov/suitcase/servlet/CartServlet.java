@@ -36,13 +36,11 @@ public class CartServlet extends HttpServlet {
             int productId = Integer.parseInt(productIdStr);
             int quantity = 1;
 
-            // Если передано количество — используем его
             if (quantityStr != null && quantityStr.matches("\\d+") && Integer.parseInt(quantityStr) > 0) {
                 quantity = Integer.parseInt(quantityStr);
             }
 
             if (action == null || action.equals("add")) {
-                // Добавляем именно указанное количество
                 cart.addItem(productId, quantity);
                 session.setAttribute("successMessage", "Товар добавлен в корзину!");
                 resp.sendRedirect("products");
@@ -83,7 +81,6 @@ public class CartServlet extends HttpServlet {
             Map<Integer, Integer> items = cart.getItems();
             List<Product> products = new ArrayList<>();
 
-            // ИСПРАВЛЕНО: используем entrySet чтобы избежать дублирования
             for (Map.Entry<Integer, Integer> entry : items.entrySet()) {
                 productDao.findById(entry.getKey()).ifPresent(products::add);
             }

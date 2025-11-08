@@ -46,22 +46,37 @@
             <span>Цена: <%= p.getPrice() %> $</span><br>
         </div>
 
-        <form action="cart" method="post" style="display:inline;">
-            <input type="hidden" name="productId" value="<%= p.getId() %>">
-            <input type="hidden" name="action" value="update">
-            <input type="number" name="quantity" value="<%= q %>" min="1" style="width:60px;">
-            <button type="submit">Обновить</button>
-        </form>
+        <div class="quantity-controls">
+            <!-- Минус: нельзя уменьшить меньше 1 -->
+            <form action="cart" method="post" style="display:inline;">
+                <input type="hidden" name="productId" value="<%= p.getId() %>">
+                <input type="hidden" name="action" value="update">
+                <input type="hidden" name="quantity" value="<%= q - 1 %>">
+                <button type="submit" class="quantity-btn" <%= (q <= 1) ? "disabled" : "" %>>−</button>
+            </form>
 
-        <form action="cart" method="post" style="display:inline;">
-            <input type="hidden" name="productId" value="<%= p.getId() %>">
-            <input type="hidden" name="action" value="remove">
-            <button type="submit" class="remove-btn">Удалить</button>
-        </form>
+            <div class="quantity-display"><%= q %></div>
+
+            <!-- Плюс -->
+            <form action="cart" method="post" style="display:inline;">
+                <input type="hidden" name="productId" value="<%= p.getId() %>">
+                <input type="hidden" name="action" value="update">
+                <input type="hidden" name="quantity" value="<%= q + 1 %>">
+                <button type="submit" class="quantity-btn">+</button>
+            </form>
+
+            <!-- Удаление -->
+            <form action="cart" method="post" style="display:inline;">
+                <input type="hidden" name="productId" value="<%= p.getId() %>">
+                <input type="hidden" name="action" value="remove">
+                <button type="submit" class="remove-btn">🗑</button>
+            </form>
+        </div>
 
         <div>Сумма: <b><%= String.format("%.2f", sum) %> $</b></div>
     </div>
     <hr>
+
     <%
         }
     %>
