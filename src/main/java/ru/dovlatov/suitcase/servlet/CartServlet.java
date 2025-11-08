@@ -28,16 +28,48 @@ public class CartServlet extends HttpServlet {
             session.setAttribute("cart", cart);
         }
 
+        String action = req.getParameter("action");
         String productIdStr = req.getParameter("productId");
+        String quantityStr = req.getParameter("quantity");
+
         if (productIdStr != null) {
             int productId = Integer.parseInt(productIdStr);
-            cart.addItem(productId);
+            int quantity = 1;
 
-            session.setAttribute("successMessage", "Товар добавлен в корзину!");
+            // Если передано количество — используем его
+            if (quantityStr != null && quantityStr.matches("\\d+") && Integer.parseInt(quantityStr) > 0) {
+                quantity = Integer.parseInt(quantityStr);
+            }
+
+            if (action == null || action.equals("add")) {
+                // Добавляем именно указанное количество
+                cart.addItem(productId, quantity);
+                session.setAttribute("successMessage", "Товар добавлен в корзину!");
+                resp.sendRedirect("products");
+                return;
+            }
+
+            switch (action) {
+                case "remove" -> {
+                    cart.removeItem(productId);
+                    session.setAttribute("successMessage", "Товар удалён из корзины!");
+                    resp.sendRedirect("cart");
+                    return;
+                }
+                case "update" -> {
+                    cart.updateQuantity(productId, quantity);
+                    session.setAttribute("successMessage", "Количество обновлено!");
+                    resp.sendRedirect("cart");
+                    return;
+                }
+            }
         }
 
         resp.sendRedirect("products");
     }
+
+
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {

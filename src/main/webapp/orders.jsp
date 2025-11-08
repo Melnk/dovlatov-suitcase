@@ -27,6 +27,7 @@
         </ul>
         <button class="close-btn">×</button>
     </nav>
+    <div class="order-history-container">
     <h2>Мои заказы</h2>
 
     <%
@@ -71,6 +72,7 @@
         }
     %>
     <a href="cart.jsp" class="link-orders">Назад</a>
+    </div>
 </div>
 
 </body>

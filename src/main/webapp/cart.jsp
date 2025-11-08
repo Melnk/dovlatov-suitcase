@@ -1,12 +1,6 @@
 <%@ page import="ru.dovlatov.suitcase.model.Product" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %><%--
-  Created by IntelliJ IDEA.
-  User: melni
-  Date: 03.11.2025
-  Time: 17:17
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -43,17 +37,34 @@
         double total = 0.0;
         for (Product p : products) {
             int q = quantities.getOrDefault(p.getId(), 1);
-            total += p.getPrice().doubleValue() * q;
+            double sum = p.getPrice().doubleValue() * q;
+            total += sum;
     %>
     <div class="cart-item">
-        <span><%= p.getName() %></span>
-        <span>Количество: <%= q %></span>
-        <span>Цена: <%= p.getPrice() %> $</span>
+        <div class="cart-item-info">
+            <span><b><%= p.getName() %></b></span><br>
+            <span>Цена: <%= p.getPrice() %> $</span><br>
+        </div>
+
+        <form action="cart" method="post" style="display:inline;">
+            <input type="hidden" name="productId" value="<%= p.getId() %>">
+            <input type="hidden" name="action" value="update">
+            <input type="number" name="quantity" value="<%= q %>" min="1" style="width:60px;">
+            <button type="submit">Обновить</button>
+        </form>
+
+        <form action="cart" method="post" style="display:inline;">
+            <input type="hidden" name="productId" value="<%= p.getId() %>">
+            <input type="hidden" name="action" value="remove">
+            <button type="submit" class="remove-btn">Удалить</button>
+        </form>
+
+        <div>Сумма: <b><%= String.format("%.2f", sum) %> $</b></div>
     </div>
+    <hr>
     <%
         }
     %>
-    <hr>
     <h3>Итого: <%= String.format("%.2f", total) %> $</h3>
     <form action="order" method="post">
         <button type="submit">Оформить заказ</button>
@@ -63,7 +74,6 @@
     %>
     <a href="orders" class="link-orders">Перейти к моим заказам</a>
 </div>
-
 
 <script src="static/js/script.js"></script>
 </body>

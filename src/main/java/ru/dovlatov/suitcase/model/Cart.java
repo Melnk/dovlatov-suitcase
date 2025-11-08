@@ -10,8 +10,20 @@ public class Cart {
         items.merge(productId, 1, Integer::sum);
     }
 
+    public void addItem(int productId, int quantity) {
+        items.merge(productId, quantity, Integer::sum);
+    }
+
     public void removeItem(int productId) {
         items.remove(productId);
+    }
+
+    public void updateQuantity(int productId, int quantity) {
+        if (quantity <= 0) {
+            removeItem(productId);
+        } else {
+            items.put(productId, quantity);
+        }
     }
 
     public Map<Integer, Integer> getItems() {
