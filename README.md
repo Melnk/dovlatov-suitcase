@@ -3,14 +3,25 @@
 Проект создан как учебная семестровая работа по сервлетам (Java EE) с использованием **Apache Tomcat**, **PostgreSQL**, **JSP**, **MVC**, **AJAX**, **JDBC** и **Maven**.
 
 ## Технологии:
-- Java Servlets / JSP / Freemarker
+- Java 21
+- JSP / JSTL
+- Servlet API
+- HTML + CSS + JS
 - JDBC + PostgreSQL
-- Tomcat 10
+- Apache Tomcat 10
 - Maven
 - MVC architecture
 - AJAX + JS
 - WebFilter, WebListener
 - BCrypt
+
+## Функционал
+
+### Пользовательская часть
+- Регистрация и авторизация (в том числе роль **admin**)
+- Валидация данных на клиенте и сервере
+- Хэширование паролей через **BCrypt**
+- Просмотр товаров (книги Довлатова)
 
 ## Развертывание
 1. Установи **Apache Tomcat 10**
