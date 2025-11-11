@@ -16,7 +16,7 @@
     <ul>
         <li><a href="index.jsp">Главная</a></li>
         <li><a href="biography">Биография</a></li>
-        <li><a href="gallery.jsp">Галерея</a></li>
+        <li><a href="gallery">Галерея</a></li>
         <li><a href="products">Товары</a></li>
         <li><a href="cart">Корзина</a></li>
         <li><a href="logout">Выйти</a></li>
