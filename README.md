@@ -56,7 +56,7 @@
 <img width="1918" height="995" alt="image" src="https://github.com/user-attachments/assets/a8acc681-9eb4-4d20-9cec-9dc89851588d" />
 
 ### История заказов
-<img width="1920" height="996" alt="image" src="https://github.com/user-attachments/assets/ecd01d4e-2365-45f1-a1f0-6b9e117e8c3f" />
+<img width="1918" height="995" alt="image" src="https://github.com/user-attachments/assets/ecfb6b60-976d-443c-a17f-bdbeff06d14a" />
 
 ### Админ-панель
 <img width="1920" height="997" alt="image" src="https://github.com/user-attachments/assets/6929152e-338e-498e-a0bc-dfdb778325ae" />
