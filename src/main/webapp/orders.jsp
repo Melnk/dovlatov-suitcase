@@ -30,48 +30,50 @@
     <div class="order-history-container">
     <h2>Мои заказы</h2>
 
-    <%
-        List<OrderView> orders = (List<OrderView>) request.getAttribute("orders");
-        if (orders == null || orders.isEmpty()) {
-    %>
-     <p>У вас пока нет заказов.</p>
-    <%
+        <%
+            List<OrderView> orders = (List<OrderView>) request.getAttribute("orders");
+            if (orders == null || orders.isEmpty()) {
+        %>
+        <p>У вас пока нет заказов.</p>
+        <%
         } else {
             int currentOrder = -1;
             double total = 0;
             for (OrderView o : orders) {
                 if (o.getOrderId() != currentOrder) {
                     if (currentOrder != -1) {
-    %>
-    <p><b>Итого:</b><%= String.format("%.2f", total)%> $</p><hr>
-    <%
-                    }
-                    currentOrder = o.getOrderId();
-                    total = 0;
-    %>
-                    <h3>Заказ №<%= o.getOrderId() %> - <%= o.getCreatedAt()%></h3>
-                    <table border="1" cellPadding="8" cellspacing="0">
-                        <tr><th>Товар</th><th>Кол-во</th><th>Цена</th><th>Сумма</th></tr>
-    <%
-                            }
+        %>
+        </table>
+        <p><b>Итого:</b> <%= String.format("%.2f", total) %> $</p>
+        <hr>
+        <%
+            }
+            currentOrder = o.getOrderId();
+            total = 0;
+        %>
+        <h3>Заказ №<%= o.getOrderId() %> - <%= o.getCreatedAt() %></h3>
+        <table border="1" cellPadding="8" cellspacing="0">
+            <tr><th>Товар</th><th>Кол-во</th><th>Цена</th><th>Сумма</th></tr>
+            <%
+                }
                 double sum = o.getPrice().doubleValue() * o.getQuantity();
                 total += sum;
-    %>
-                        <tr>
-                            <td><%= o.getProductName()%></td>
-                            <td><%= o.getQuantity()%></td>
-                            <td><%= o.getPrice()%> $</td>
-                            <td><%= String.format("%.2f", sum) %> $</td>
-                        </tr>
-    <%
-                            }
-    %>
-                        </table>
-                        <p><b>Итого: </b><%= String.format("%.2f", total)%></p>
-    <%
-        }
-    %>
-    <a href="cart.jsp" class="link-orders">Назад</a>
+            %>
+            <tr>
+                <td><%= o.getProductName() %></td>
+                <td><%= o.getQuantity() %></td>
+                <td><%= o.getPrice() %> $</td>
+                <td><%= String.format("%.2f", sum) %> $</td>
+            </tr>
+            <%
+                }
+            %>
+        </table>
+        <p><b>Итого:</b> <%= String.format("%.2f", total) %> $</p>
+        <%
+            }
+        %>
+        <a href="cart.jsp" class="link-orders">Назад</a>
     </div>
 </div>
 
