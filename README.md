@@ -32,3 +32,33 @@
 2. Настрой конфигурацию в **Intellij IDEA** ('Run -> Edit Configurations -> Tomcat Server')
 3. Подними локальную PostgreSQL базу и укажи параметры в Util-классе
 4. Запусти сервер и перейди по адресу 'http://localhost:8080/'
+
+## Скриншоты
+
+### Аутентификация
+<img width="1920" height="1000" alt="image" src="https://github.com/user-attachments/assets/297a7cc5-5939-4a53-bbf6-6554b26e5e64" />
+
+### Главное меню
+<img width="1918" height="1002" alt="image" src="https://github.com/user-attachments/assets/7d1778a4-551e-4a24-b1c8-ae9c8142ffe8" />
+
+### Биография
+<img width="1920" height="1000" alt="image" src="https://github.com/user-attachments/assets/c480e4b2-f4e2-44c7-b612-ece017b8deb8" />
+
+### Галерея
+<img width="1920" height="1000" alt="image" src="https://github.com/user-attachments/assets/4c5cd83d-74b7-467b-8801-93f2a36a6fc5" />
+
+<img width="1917" height="999" alt="image" src="https://github.com/user-attachments/assets/664cc1ce-a606-44be-95ee-10a0044bc74f" />
+
+### Товары
+<img width="1917" height="1002" alt="image" src="https://github.com/user-attachments/assets/91e81259-8032-40df-933b-f870c6bd15de" />
+
+### Корзина
+<img width="1918" height="995" alt="image" src="https://github.com/user-attachments/assets/a8acc681-9eb4-4d20-9cec-9dc89851588d" />
+
+### История заказов
+<img width="1920" height="996" alt="image" src="https://github.com/user-attachments/assets/ecd01d4e-2365-45f1-a1f0-6b9e117e8c3f" />
+
+### Админ-панель
+<img width="1920" height="997" alt="image" src="https://github.com/user-attachments/assets/6929152e-338e-498e-a0bc-dfdb778325ae" />
+
+
