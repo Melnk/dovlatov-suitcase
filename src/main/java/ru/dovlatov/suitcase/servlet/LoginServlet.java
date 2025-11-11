@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
         if ("admin".equals(user.getRole())) {
             resp.sendRedirect("admin/dashboard");
         } else {
-            resp.sendRedirect("index.jsp");
+            resp.sendRedirect("index");
         }
     }
 }

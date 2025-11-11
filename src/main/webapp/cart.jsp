@@ -47,7 +47,6 @@
         </div>
 
         <div class="quantity-controls">
-            <!-- Минус: нельзя уменьшить меньше 1 -->
             <form action="cart" method="post" style="display:inline;">
                 <input type="hidden" name="productId" value="<%= p.getId() %>">
                 <input type="hidden" name="action" value="update">
