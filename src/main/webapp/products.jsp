@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="ru.dovlatov.suitcase.model.Product" %>
+<%@ page import="ru.dovlatov.suitcase.model.PickupPoint" %>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -41,7 +42,6 @@
     <h2>Книги Сергея Довлатова</h2>
 
     <%
-        // Получаем продукты из request
         List<Product> products = (List<Product>) request.getAttribute("products");
 
         if (products != null) {
@@ -64,6 +64,16 @@
             <% } %>
             <h3><%= product.getName() %></h3>
             <p><%= product.getDescription() %></p>
+            <% if (product.getPickupPoints() != null && !product.getPickupPoints().isEmpty()) { %>
+            <p><b>Доступно в ПВЗ:</b></p>
+            <ul>
+                <% for (PickupPoint point : product.getPickupPoints()) { %>
+                <li><%= point.getCity() %>, <%= point.getAddress() %></li>
+                <% } %>
+            </ul>
+            <% } else { %>
+            <p><i>Нет доступных пунктов выдачи</i></p>
+            <% } %>
             <p><b><%= product.getPrice() %> $</b></p>
             <form action="cart" method="post">
                 <input type="hidden" name="productId" value="<%= product.getId() %>">
