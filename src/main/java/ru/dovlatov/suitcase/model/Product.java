@@ -1,6 +1,7 @@
 package ru.dovlatov.suitcase.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Product {
     private int id;
@@ -8,6 +9,24 @@ public class Product {
     private String description;
     private BigDecimal price;
     private String imageUrl;
+    private List<PickupPoint> pickupPoints;
+
+    public Product(int id, String name, String description, BigDecimal price, String imageUrl, List<PickupPoint> pickupPoints) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.pickupPoints = pickupPoints;
+    }
+
+    public List<PickupPoint> getPickupPoints() {
+        return pickupPoints;
+    }
+
+    public void setPickupPoints(List<PickupPoint> pickupPoints) {
+        this.pickupPoints = pickupPoints;
+    }
 
     public Product() {
     }

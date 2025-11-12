@@ -21,21 +21,27 @@ public class ProductDao {
         SELECT * FROM products WHERE id = ?;
         """;
 
+    private final PickupPointDao pickupDAO = new PickupPointDao();
+
+
 
     public List<Product> findAll() {
-        List<Product> products = new ArrayList<Product>();
+        List<Product> products = new ArrayList<>();
         try (Connection conn = ConnectionManager.getConnection();
-        PreparedStatement ps = conn.prepareStatement(FIND_ALL);
-        ResultSet rs = ps.executeQuery()) {
+             PreparedStatement ps = conn.prepareStatement(FIND_ALL);
+             ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                products.add(new Product(
+                Product product = new Product(
                     rs.getInt("id"),
                     rs.getString("name"),
                     rs.getString("description"),
                     rs.getBigDecimal("price"),
                     rs.getString("image_url")
-                ));
+                );
+                // подгружаем ПВЗ
+                product.setPickupPoints(pickupDAO.findByProductId(product.getId()));
+                products.add(product);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Ошибка загрузки списка продуктов", e);
@@ -48,22 +54,26 @@ public class ProductDao {
              PreparedStatement ps = conn.prepareStatement(FIND_BY_ID)) {
 
             ps.setInt(1, id);
-
             ResultSet rs = ps.executeQuery();
+
             if (rs.next()) {
-                return Optional.of(new Product(
+                Product product = new Product(
                     rs.getInt("id"),
                     rs.getString("name"),
                     rs.getString("description"),
                     rs.getBigDecimal("price"),
-                    rs.getString("image_url"))
+                    rs.getString("image_url")
                 );
+                // подгружаем ПВЗ
+                product.setPickupPoints(pickupDAO.findByProductId(product.getId()));
+                return Optional.of(product);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Ошибка при поиске продукта", e);
         }
         return Optional.empty();
     }
+
 
     public int countProducts() {
         try (Connection conn = ConnectionManager.getConnection();
