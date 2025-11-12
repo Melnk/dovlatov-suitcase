@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.png">
     <meta charset="UTF-8">
     <title>Сергей Довлатов</title>
     <link rel="stylesheet" href="/static/css/image.css">

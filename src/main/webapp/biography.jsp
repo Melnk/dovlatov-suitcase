@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.png">
     <title>Биография</title>
     <link rel="stylesheet" href="static/css/style.css">
 </head>
