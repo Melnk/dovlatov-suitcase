@@ -50,7 +50,7 @@
 <img width="1919" height="996" alt="image" src="https://github.com/user-attachments/assets/dbed4eec-6500-4802-86a0-f6613251bdd9" />
 
 ### Товары
-<img width="1920" height="999" alt="image" src="https://github.com/user-attachments/assets/4f95d560-8ccb-483f-ab19-950ceda792d1" />
+<img width="1920" height="998" alt="image" src="https://github.com/user-attachments/assets/a77b21de-f0d4-47d2-a858-de65b25bb5d1" />
 
 ### Корзина
 <img width="1920" height="999" alt="image" src="https://github.com/user-attachments/assets/e6e0ea43-625d-4ba5-9187-4ae948d7e64d" />
