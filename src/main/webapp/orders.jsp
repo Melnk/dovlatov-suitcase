@@ -74,7 +74,7 @@
         <%
             }
         %>
-        <a href="cart.jsp" class="link-orders">Назад</a>
+        <a href="cart" class="link-orders">Назад</a>
     </div>
 </div>
 
