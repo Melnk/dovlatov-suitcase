@@ -1,5 +1,6 @@
 package ru.dovlatov.suitcase.servlet;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,6 +43,11 @@ public class RegisterServlet extends HttpServlet {
         userDao.save(user);
 
         resp.sendRedirect("login.jsp?success=1");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("register.jsp").forward(req, resp);
     }
 
     private static boolean isValidEmail(String email) {

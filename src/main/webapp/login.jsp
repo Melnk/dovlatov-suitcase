@@ -28,7 +28,7 @@
         <button type="submit">Войти</button>
     </form>
 
-    <p><a href="register.jsp">Нет аккаунта? Зарегистрируйтесь</a></p>
+    <p><a href="register">Нет аккаунта? Зарегистрируйтесь</a></p>
 
 </body>
 </html>
