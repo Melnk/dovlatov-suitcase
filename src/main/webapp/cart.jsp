@@ -15,7 +15,7 @@
 
 <nav id="mainNav" class="nav-sidebar">
     <ul>
-        <li><a href="index.jsp">Главная</a></li>
+        <li><a href="index">Главная</a></li>
         <li><a href="biography">Биография</a></li>
         <li><a href="gallery">Галерея</a></li>
         <li><a href="products">Товары</a></li>
