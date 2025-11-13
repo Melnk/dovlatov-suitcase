@@ -9,6 +9,64 @@
     <meta charset="UTF-8">
     <title>Товары - Сергей Довлатов</title>
     <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .product {
+            width: 300px;
+            min-height: 500px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .product img {
+            width: 150px;
+            height: auto;
+            margin: 0 auto 15px;
+            display: block;
+        }
+
+        .product h3 {
+            margin: 10px 0;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .product p {
+            margin: 8px 0;
+            flex-grow: 1;
+        }
+
+        .product ul {
+            margin: 5px 0;
+            padding-left: 15px;
+        }
+
+        .product form {
+            margin-top: auto;
+        }
+
+        .pickup-points {
+            max-height: 120px;
+            overflow: hidden;
+        }
+
+        .more-points {
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -46,34 +104,40 @@
 
         if (products != null) {
     %>
-    <!-- Отладочная информация
-    <div style="background: #f8f9fa; padding: 15px; margin: 20px 0; border-radius: 5px;">
-        <h4>Общая информация:</h4>
-        <p>Количество товаров: <strong><%= products.size() %></strong></p>
-        <p>Кодировка страницы: <strong>UTF-8</strong></p>
-        <p>Запрошенный URL: <strong><%= request.getRequestURL() %></strong></p>
-    </div>-->
 
     <div class="product-list">
         <%
             for (Product product : products) {
+                List<PickupPoint> pickupPoints = product.getPickupPoints();
+                int totalPoints = pickupPoints != null ? pickupPoints.size() : 0;
+                int showPoints = Math.min(totalPoints, 3);
+                int remainingPoints = Math.max(0, totalPoints - 3);
         %>
         <div class="product">
             <% if (product.getImageUrl() != null && !product.getImageUrl().isEmpty()) { %>
-            <img src="<%= product.getImageUrl() %>" alt="<%= product.getName() %>" style="width:150px;height:auto;">
+            <img src="<%= product.getImageUrl() %>" alt="<%= product.getName() %>">
             <% } %>
             <h3><%= product.getName() %></h3>
             <p><%= product.getDescription() %></p>
-            <% if (product.getPickupPoints() != null && !product.getPickupPoints().isEmpty()) { %>
-            <p><b>Доступно в ПВЗ:</b></p>
-            <ul>
-                <% for (PickupPoint point : product.getPickupPoints()) { %>
-                <li><%= point.getCity() %>, <%= point.getAddress() %></li>
+
+            <div class="pickup-points">
+                <% if (pickupPoints != null && !pickupPoints.isEmpty()) { %>
+                <p><b>Доступно в ПВЗ:</b></p>
+                <ul>
+                    <% for (int i = 0; i < showPoints; i++) {
+                        PickupPoint point = pickupPoints.get(i);
+                    %>
+                    <li><%= point.getCity() %>, <%= point.getAddress() %></li>
+                    <% } %>
+                </ul>
+                <% if (remainingPoints > 0) { %>
+                <p class="more-points">и другие (<%= remainingPoints %>)</p>
                 <% } %>
-            </ul>
-            <% } else { %>
-            <p><i>Нет доступных пунктов выдачи</i></p>
-            <% } %>
+                <% } else { %>
+                <p><i>Нет доступных пунктов выдачи</i></p>
+                <% } %>
+            </div>
+
             <p><b><%= product.getPrice() %> $</b></p>
             <form action="cart" method="post">
                 <input type="hidden" name="productId" value="<%= product.getId() %>">
